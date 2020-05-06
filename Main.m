@@ -9,7 +9,7 @@ global z k n D1 dz;
 % Definition des parametres
 k = 10; 
 tmax= 1;
-dt=0.001;
+dt=0.01;
 z0 = -0.5;
 zL = 0.5;
 n = 201;
@@ -55,16 +55,17 @@ tic
 
 
 %% Receuil de yout (on laisse tomber)
-vyout = yout (:,1 :length(z));
-wyout = yout(:,length(z)+1:2*length(z))
+vyout = yout (:,1:n);
+wyout = yout(:,n+1:2*n)
 %% Arret et lecture du chronometre
 tcpu=toc;
 tcpu
 
 %% Visualisation graphique
-Visualizer(z,t,wyout);
+Visualizer(z,t,vyout);
 %mesh(z, t,yout)
-%plot(vyout, t)
+hold
+%plot(z, wyout, '.-k')
 
 
 
