@@ -9,10 +9,10 @@ global z k n D1 dz;
 % Definition des parametres
 k = 10; 
 tmax= 1;
-dt=0.01;
+dt=0.1;
 z0 = -0.5;
 zL = 0.5;
-n = 201;
+n = 501;
 
 % Creation de la grille spatio temporelle
 dz = (zL - z0)/(n - 1);
@@ -21,12 +21,12 @@ z = z';
 t= 0:dt:tmax;
 
 % Approximation de la derivee seconde
-%D1 = two_point_upwind_D1(z);
-D1 = three_point_centered_D1(z);
-%D1 = three_point_upwind_D1(z);
-%D1 = five_point_centered_D1(z);
-%D1 = five_point_biased_upwind_D1(z);
-%D1 = four_point_upwind_D1(z);
+%D1 = two_point_upwind_D1(z,1);
+%D1 = three_point_centered_D1(z);
+%D1 = three_point_upwind_D1(z,1);
+D1 = five_point_centered_D1(z);
+%D1 = five_point_biased_upwind_D1(z,1);
+%D1 = four_point_upwind_D1(z,1);
 %D1 = four_point_biased_upwind_D1(z, 1);
 
 % Conditions initiales (vecteur initial)
@@ -52,8 +52,6 @@ tic
 
 %% Appel de Ode (Ode45 ici)
 [tout, yout] = ode45(@Impulse,t,u0,options);
-
-
 %% Receuil de yout (on laisse tomber)
 vyout = yout (:,1:n);
 wyout = yout(:,n+1:2*n)
@@ -62,10 +60,9 @@ tcpu=toc;
 tcpu
 
 %% Visualisation graphique
-Visualizer(z,t,vyout);
-%mesh(z, t,yout)
-hold
-%plot(z, wyout, '.-k')
+%Visualizer(z,t,vyout);
+Visualizer2d(z,yout);
+
 
 
 
