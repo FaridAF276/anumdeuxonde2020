@@ -3,7 +3,7 @@ function  Visualizer2d(z,yout)
   global n
   clf;
   vyout = yout (:,1:n);
-  wyout = yout(:,n+1:2*n)
+  wyout = yout(:,n+1:2*n);
   figure(1);
   plot(z,vyout);
   title ("Amplitude du signal v observée entre t=0 et t=1");
