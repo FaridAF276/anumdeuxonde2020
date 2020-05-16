@@ -24,8 +24,8 @@ t= 0:dt:tmax;
 %D1 = two_point_upwind_D1(z,1);
 %D1 = three_point_centered_D1(z);
 %D1 = three_point_upwind_D1(z,1);
-%D1 = five_point_centered_D1(z);
-D1 = five_point_biased_upwind_D1(z,1);
+D1 = five_point_centered_D1(z);
+%D1 = five_point_biased_upwind_D1(z,1);
 %D1 = four_point_upwind_D1(z,1);
 %D1 = four_point_biased_upwind_D1(z, 1);
 
@@ -34,19 +34,16 @@ v0 = zeros (length(z),1);
 w0 = zeros (length(z),1);
 bi = (-0.3-z0)*(n-1)+1;
 bs = (-0.1-z0)*(n-1)+1;
-v0(bi:bs) = 0.5*(1+cos(10*pi*z(bi:bs)))
+v0(bi:bs) = 0.5*(1+cos(10*pi*z(bi:bs)));
 bi = (0.1-z0)*(n-1)+1;
 bs = (0.3-z0)*(n-1)+1;
-w0(bi:bs) = 0.5*(1+cos(10*pi*z(bi:bs)))
+w0(bi:bs) = 0.5*(1+cos(10*pi*z(bi:bs)));
 u0 = [v0;w0];
-
-
-%Jpattern()
 %% Initiation de Ode
 
-#options=odeset('RelTol',1e-5,'AbsTol',1e-5,'stats','on','jpattern', sparse (spones([eye(n) + spones(D2), eye(n); eye(n),  eye(n)])));
-options=odeset('RelTol',1e-5,'AbsTol',1e-5,'stats','on', 'JPattern', Jpattern());
-%options=odeset('RelTol',1e-5,'AbsTol',1e-5,'stats','on');
+%options=odeset('RelTol',1e-5,'AbsTol',1e-5,'stats','on','jpattern', sparse (spones([eye(n) + spones(D2), eye(n); eye(n),  eye(n)])));
+%options=odeset('RelTol',1e-5,'AbsTol',1e-5,'stats','on', 'JPattern', Jpattern());
+options=odeset('RelTol',1e-5,'AbsTol',1e-5,'stats','on');
 
 %% Lancement du chronometre
 tic
