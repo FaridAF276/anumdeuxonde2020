@@ -12,7 +12,7 @@ tmax= 1;
 dt=0.1;
 z0 = -0.5;
 zL = 0.5;
-n = 1001;
+n = 511;
 
 % Creation de la grille spatio temporelle
 dz = (zL - z0)/(n - 1);
@@ -47,7 +47,6 @@ options=odeset('RelTol',1e-5,'AbsTol',1e-5,'stats','on');
 
 %% Lancement du chronometre
 tic
-
 %% Appel de Ode (Ode45 ici)
 [tout, yout] = ode45(@Impulse,t,u0,options);
 %% Receuil de yout (on laisse tomber)
