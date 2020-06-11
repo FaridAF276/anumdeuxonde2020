@@ -4,7 +4,7 @@ clc
 
 
 %% Declaration des variables
-global z k n D1v D1w dz fz;
+global z k n D1v D1w D1 dz fz;
 
 % Definition des parametres
 k = 10; 
@@ -12,7 +12,7 @@ tmax= 1;
 dt=0.1;
 z0 = -0.5;
 zL = 0.5;
-n = 101;
+n = 501;
 
 % Creation de la grille spatio temporelle
 dz = (zL - z0)/(n - 1);
@@ -25,13 +25,13 @@ t= 0:dt:tmax;
 %D1w = two_point_upwind_D1(z,-1);
 %D1v = three_point_centered_D1(z);
 %D1w = three_point_centered_D1(z);
-D1v = three_point_upwind_D1(z,1);
-D1w = three_point_upwind_D1(z,-1);
+%D1v = three_point_upwind_D1(z,1);
+%D1w = three_point_upwind_D1(z,-1);
 %D1 = five_point_centered_D1(z);
 %D1v = D1;
 %D1w = D1;
-%D1v = five_point_biased_upwind_D1(z,1);
-%D1w = five_point_biased_upwind_D1(z,-1);
+D1v = five_point_biased_upwind_D1(z,1);
+D1w = five_point_biased_upwind_D1(z,-1);
 %D1v = four_point_upwind_D1(z,1);
 %D1w = four_point_upwind_D1(z,-1);
 %D1v = four_point_biased_upwind_D1(z, 1);
@@ -52,7 +52,7 @@ u0 = [v0;w0];
 %% Initiation de Ode
 
 %options=odeset('RelTol',1e-5,'AbsTol',1e-5,'stats','on','jpattern', sparse (spones([eye(n) + spones(D2), eye(n); eye(n),  eye(n)])));
-%options=odeset('RelTol',1e-5,'AbsTol',1e-5,'stats','on', 'JPattern', Jpattern());
+options=odeset('RelTol',1e-5,'AbsTol',1e-5,'stats','on', 'JPattern', Jpattern());
 options=odeset('RelTol',1e-5,'AbsTol',1e-5,'stats','on');
 
 %% Lancement du chronometre
