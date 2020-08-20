@@ -1,9 +1,7 @@
-function [out] = KTdfluxdx(~,~,~)
-  global n
-  % first equation
-  out(1:n,1,1)= ones(n,1);
-  out(1:n,1,2)= zeros(n,1);
-  % second equation
-  out(1:n,2,1)= zeros(n,1);
-  out(1:n,2,2)= ones(n,1);
+function [out] = KTdfluxdx(ne,t,x)
+  n = length(x);
+  out(1:n,1,1)= .5;
+  out(1:n,1,2)= 0;
+  out(1:n,2,1)= 0;
+  out(1:n,2,2)= -.5;
 end

@@ -12,7 +12,7 @@ tmax= 1;
 dt=0.1;
 z0 = -0.5;
 zL = 0.5;
-n = 501;
+n = 101;
 
 % Creation de la grille spatio temporelle
 dz = (zL - z0)/(n - 1);
@@ -30,8 +30,8 @@ t= 0:dt:tmax;
 %D1 = five_point_centered_D1(z);
 %D1v = D1;
 %D1w = D1;
-D1v = five_point_biased_upwind_D1(z,1);
-D1w = five_point_biased_upwind_D1(z,-1);
+%D1v = five_point_biased_upwind_D1(z,1);
+%D1w = five_point_biased_upwind_D1(z,-1);
 %D1v = four_point_upwind_D1(z,1);
 %D1w = four_point_upwind_D1(z,-1);
 %D1v = four_point_biased_upwind_D1(z, 1);
@@ -42,12 +42,12 @@ v0 = zeros (length(z),1);
 w0 = zeros (length(z),1);
 bi = (-0.3-z0)*(n-1)+1;
 bs = (-0.1-z0)*(n-1)+1;
-v0(bi:bs) = 0.5*(1+cos(10*pi*z(bi:bs)));
-%v0(bi:bs) = 1;
+%v0(bi:bs) = 0.5*(1+cos(10*pi*z(bi:bs)));
+v0(bi:bs) = 1;
 bi = (0.1-z0)*(n-1)+1;
 bs = (0.3-z0)*(n-1)+1;
-w0(bi:bs) = 0.5*(1+cos(10*pi*z(bi:bs)));
-%w0(bi:bs) = 1;
+%w0(bi:bs) = 0.5*(1+cos(10*pi*z(bi:bs)));
+w0(bi:bs) = 1;
 u0 = [v0;w0];
 %% Initiation de Ode
 
